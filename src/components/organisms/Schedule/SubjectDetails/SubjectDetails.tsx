@@ -3,6 +3,7 @@ import EditableText from "../../../atoms/Header/EditableText/EditableText"
 import { useState } from "react";
 import TimeButton from "../../../molecules/TimeButton/TimeButton";
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import SpeakersComponent from "../../../molecules/Speakers/Speakers";
 
 const SubjectDetailsContainer = styled(Box)`
     display:flex;
@@ -24,6 +25,8 @@ const TextAreaContainer = styled(Box)`
 
 `
 
+
+
 type SubjectDetailsProps = {
     subjectTitle?: string;
 }
@@ -40,14 +43,17 @@ const SubjectDetails = ({ subjectTitle = "Some subject title" }: SubjectDetailsP
             <TimeButton />
 
             <TextAreaContainer>
-                <Typography variant="caption">{"Subject description"}</Typography>
+                <Typography variant="caption">Subject description</Typography>
                 <TextareaAutosize aria-label="minimum height"
-                    minRows={3}
-                    placeholder="Minimum 3 rows"
-                    style={{ width: "100%" }}
+                    minRows={5}
+
+                    style={{ width: "100%", resize: "vertical" }}
+
 
                 />
             </TextAreaContainer>
+
+            <SpeakersComponent />
         </SubjectDetailsContainer>
     )
 }

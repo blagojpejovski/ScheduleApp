@@ -71,7 +71,7 @@ const EditableText = ({ value, label, onChange }: EditableTextProps) => {
             }
             {!editing && (
                 <EditContainer onClick={handleStartEditing}>
-                    <Edit />
+                    <Edit fontSize="small" />
                 </EditContainer>
             )}
         </InputAndIconContainer>
