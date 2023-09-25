@@ -7,7 +7,7 @@ import BackgroundImage from "./assets/images/business-meeting.png";
 import EditButton from "./components/atoms/EditButton/EditButton";
 
 const AppContainer = styled(Box)`
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   box-sizing: border-box;
   padding: ${({ theme }) => `${theme.spacing(20)} ${theme.spacing(5)}`};
