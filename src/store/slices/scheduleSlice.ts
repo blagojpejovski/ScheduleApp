@@ -114,8 +114,13 @@ export const scheduleSlice = createSlice({
       const { id, startTime, endTime } = action.payload;
       const subjectIndex = state.subjects.findIndex((s) => s.id === id);
       if (subjectIndex !== -1) {
-        state.subjects[subjectIndex].startTime = startTime;
-        state.subjects[subjectIndex].endTime = endTime;
+        if (startTime !== state.subjects[subjectIndex].startTime || endTime !== state.subjects[subjectIndex].endTime) {
+          state.subjects[subjectIndex].startTime = startTime;
+          state.subjects[subjectIndex].endTime = endTime;
+        } else {
+          return;
+        }
+
       }
 
       // sort the subjects
@@ -155,11 +160,14 @@ export const scheduleSlice = createSlice({
         });
       }
       for (let i = 0; i < subjects.length - 1; i++) {
-        state.slots.push({
-          id: i + 1,
-          startTime: subjects[i].endTime,
-          endTime: subjects[i + 1].startTime,
-        });
+        if (subjects[i].endTime !== subjects[i + 1].startTime) {
+          state.slots.push({
+            id: i + 1,
+            startTime: subjects[i].endTime,
+            endTime: subjects[i + 1].startTime,
+          });
+        }
+
       }
       if (!lastSubjectIsAtMaxTime) {
         state.slots.push({
